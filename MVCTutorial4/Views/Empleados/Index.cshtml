@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Empleados";
+}
+
+<h1>@ViewBag.Title</h1>
+<br />
+<br />
+@if(Model!=null)
+{
+    using (Html.BeginForm())
+    {;
+        <select id="selAreas" onchange="SetArea(this.value);">
+            <option value="0">Selecciona Empleado</option>
+            @foreach (MVCTutorial4.Models.Empleado empleado in Model)
+            {
+                <option value="@empleado.IdArea">@empleado.Nombre</option>
+            }
+        </select>
+
+        <input type="submit" value="Buscar Area" />
+        <input type="hidden" id="IdArea" name="IdArea" value="0" />
+        <br />
+        <br />
+        
+            <label>@ViewBag.Area</label>
+        
+    }
+    
+}
+
+<script>
+    function SetArea(id){
+        document.getElementById('IdArea').ariaValueMax = id;
+    }
+</script>
+
